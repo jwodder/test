@@ -3,6 +3,10 @@ name: Foo
 on:
     - push
 
+defaults:
+    run:
+        shell: bash
+
 jobs:
     misc:
         runs-on: windows-latest
