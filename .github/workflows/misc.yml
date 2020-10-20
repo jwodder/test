@@ -1,0 +1,11 @@
+name: Foo
+
+on:
+    - push
+
+jobs:
+    misc:
+        runs-on: windows-latest
+        steps:
+            - name: type git
+              run: type git
