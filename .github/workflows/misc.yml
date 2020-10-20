@@ -11,5 +11,7 @@ jobs:
     misc:
         runs-on: windows-latest
         steps:
-            - name: type git
-              run: type git
+            - name: Find paths to some files
+              run: |
+                type git
+                type timeout
