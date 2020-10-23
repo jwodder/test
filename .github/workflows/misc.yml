@@ -21,5 +21,6 @@ jobs:
             - run: |
                 ls -A "$HOME"
                 printf -- '\n-----\n\n'
-                ls -A "$HOME/.ssh"
+                ls -A "$HOME/.ssh" || true
+                printf -- '\n-----\n\n'
                 ssh-keygen -f ~/.ssh/id_rsa -N ''
