@@ -17,3 +17,9 @@ jobs:
                 type timeout
 
             - run: env
+
+            - run: |
+                ls -A "$HOME"
+                printf -- '\n-----\n\n'
+                ls -A "$HOME/.ssh"
+                ssh-keygen -f ~/.ssh/id_rsa -N ''
