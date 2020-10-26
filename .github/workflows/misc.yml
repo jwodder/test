@@ -16,4 +16,4 @@ jobs:
               id: echo
 
             - run: echo Yes
-              if: steps.echo.outputs.action_fruit != ""
+              if: steps.echo.outputs.action_fruit != ''
