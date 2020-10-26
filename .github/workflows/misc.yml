@@ -11,16 +11,5 @@ jobs:
     misc:
         runs-on: windows-latest
         steps:
-            - name: Find paths to some files
-              run: |
-                type git
-                type timeout
-
-            - run: env
-
             - run: |
-                ls -A "$HOME"
-                printf -- '\n-----\n\n'
-                ls -A "$HOME/.ssh" || true
-                printf -- '\n-----\n\n'
-                ssh-keygen -f ~/.ssh/id_rsa -N ''
+                echo foo | tee /dev/stderr
