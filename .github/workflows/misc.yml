@@ -10,10 +10,11 @@ defaults:
 jobs:
     misc:
         runs-on: ${{ matrix.os }}
-        matrix:
-            os:
-                - windows-latest
-                - ubuntu-latest
-                - macos-latest
+        strategy:
+            matrix:
+                os:
+                    - windows-latest
+                    - ubuntu-latest
+                    - macos-latest
         steps:
             - run: uname -p
