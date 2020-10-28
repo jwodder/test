@@ -9,17 +9,11 @@ defaults:
 
 jobs:
     misc:
-        #runs-on: windows-latest
-        runs-on: ubuntu-latest
+        runs-on: ${{ matrix.os }}
+        matrix:
+            os:
+                - windows-latest
+                - ubuntu-latest
+                - macos-latest
         steps:
-            - name: Check out repository
-              uses: actions/checkout@v2
-
-            - run: git tag
-
-            - run: |
-                echo "::set-output name=action_fruit::"
-              id: echo
-
-            - run: echo Yes
-              if: steps.echo.outputs.action_fruit != ''
+            - run: uname -p
