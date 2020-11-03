@@ -13,9 +13,8 @@ jobs:
         strategy:
             matrix:
                 os:
-                    #- windows-latest
-                    #- ubuntu-latest
+                    - windows-latest
+                    - ubuntu-latest
                     - macos-latest
         steps:
-            - run: env
-            - run: ls -l "$HOME"
+            - run: echo "${{ runner.temp }}"
