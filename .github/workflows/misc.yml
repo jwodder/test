@@ -2,6 +2,7 @@ name: Foo
 
 on:
     - push
+    - pull_request
 
 defaults:
     run:
@@ -17,5 +18,7 @@ jobs:
                     - ubuntu-latest
                     #- macos-latest
         steps:
-            - run: echo FOO='test var' >> "$GITHUB_ENV"
-            - run: echo "[$FOO]"
+            - name: Checkout this repository
+              uses: actions/checkout@v2
+
+            - run: tree .git/refs
