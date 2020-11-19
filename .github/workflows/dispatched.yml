@@ -20,3 +20,6 @@ jobs:
 
             - name: Show "github" context
               run: printf '%s' '${{ toJSON(github) }}' | jq .
+
+            - name: Show bar
+              run: printf '<%s>\n' '${{ github.event.inputs.bar }}'
