@@ -26,3 +26,7 @@ jobs:
             - run: sudo apt-get update && sudo apt-get install -y tree
 
             - run: tree .git/refs
+
+            - run: |
+                echo "GITHUB_SHA=$GITHUB_SHA"
+                echo "GITHUB_REF=$GITHUB_REF"
