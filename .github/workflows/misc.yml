@@ -33,17 +33,34 @@ jobs:
 
             - run: cat *.txt
 
-            - name: Send e-mail
+            - name: Send e-mail via Mailgun
               uses: vineetchoudhary/mailgun-action@v1.0
               with:
                 api-key: ${{ secrets.MAILGUN_API_KEY }}
                 domain: ${{ secrets.MAILGUN_DOMAIN }}
                 to: ${{ secrets.MAILGUN_RECIPIENT }}
-                from: ${{ secrets.MAILGUN_SENDER }}
-                subject: Hello from ${{ github.workflow }}, run ${{ github.run_number }}!
+                from: Mailgun API <${{ secrets.MAILGUN_SENDER }}>
+                subject: Hello via Mailgun from ${{ github.workflow }}, run ${{ github.run_number }}!
                 body: |
                     <p>This is an automatic e-mail notification from the ${{ github.workflow }} workflow on ${{ github.repository }}, run #${{ github.run_number }}.</p>
 
                     <p>Here is a link to the workflow run: &lt;https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}&gt;</p>
 
                     <p>This is a secret!  Did you know that ${{ secrets.MAILGUN_SECRET }}?</p>
+
+            - name: Send e-mail via SMTP
+              uses: dawidd6/action-send-mail@v2
+              with:
+                server_address: ${{ secrets.SMTP_HOST }}
+                server_port: ${{ secrets.SMTP_PORT }}
+                username: ${{ secrets.SMTP_USERNAME }}
+                password: ${{ secrets.SMTP_PASSWORD }}
+                from: Mailgun SMTP
+                to: ${{ secrets.MAILGUN_RECIPIENT }}
+                subject: Hello from ${{ github.workflow }}, run ${{ github.run_number }}!
+                body: |
+                    This is an automatic e-mail notification from the ${{ github.workflow }} workflow on ${{ github.repository }}, run #${{ github.run_number }}.
+
+                    Here is a link to the workflow run: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}>
+
+                    This is a secret!  Did you know that ${{ secrets.MAILGUN_SECRET }}?
