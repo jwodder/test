@@ -44,6 +44,6 @@ jobs:
                 body: |
                     <p>This is an automatic e-mail notification from the ${{ github.workflow }} workflow on ${{ github.repository }}, run #${{ github.run_number }}.</p>
 
-                    <p>Here is a link to the workflow run: &lt;https://github.com/${{ github.repository }}/runs/${{ github.run_id }}&gt;</p>
+                    <p>Here is a link to the workflow run: &lt;https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}&gt;</p>
 
                     <p>This is a secret!  Did you know that ${{ secrets.MAILGUN_SECRET }}?</p>
