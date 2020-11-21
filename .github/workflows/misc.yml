@@ -32,3 +32,18 @@ jobs:
                 echo "GITHUB_REF=$GITHUB_REF"
 
             - run: cat *.txt
+
+            - name: Send e-mail
+              uses: vineetchoudhary/mailgun-action@v1.0
+              with:
+                api-key: ${{ secrets.MAILGUN_API_KEY }}
+                domain: ${{ secrets.MAILGUN_DOMAIN }}
+                to: ${{ secrets.MAILGUN_RECIPIENT }}
+                from: ${{ secrets.MAILGUN_SENDER }}
+                subject: Hello from ${{ github.workflow }}, run ${{ github.run_number }}!
+                body: |
+                    This is an automatic e-mail notification from the ${{ github.workflow }} workflow on ${{ github.repository }}, run #${{ github.run_number }}.
+
+                    Here is a link to the workflow run: <https://github.com/${{ github.repository }}/runs/${{ github.run_id }}>
+
+                    This is a secret!  Did you know that ${{ secrets.MAILGUN_SECRET }}?
