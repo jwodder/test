@@ -33,6 +33,9 @@ jobs:
 
             - run: cat *.txt
 
+            - name: Show GitHub context in its natural state
+              run: printf '%s\n' ${{ github }}
+
 #            - name: Send e-mail via Mailgun
 #              uses: vineetchoudhary/mailgun-action@v1.0
 #              with:
