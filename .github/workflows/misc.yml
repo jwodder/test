@@ -36,6 +36,9 @@ jobs:
             - name: Show GitHub context
               run: printf '%s\n' '${{ toJson(github) }}'
 
+            - name: Show job context
+              run: printf '%s\n' '${{ toJson(job) }}'
+
             - name: Determine job URL
               run: |
                 function api_call {
