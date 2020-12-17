@@ -45,3 +45,6 @@ jobs:
                     "$@"
                 }
                 api_call "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs" | jq -r --arg job "${{ github.job }} (${{ matrix.os }})" '.jobs[] | select(.name == $job) | .html_url'
+
+            - name: Test something
+              run: echo "${{ join(matrix.*, ', ') }}"
