@@ -33,37 +33,15 @@ jobs:
 
             - run: cat *.txt
 
-            - name: Show GitHub context in its natural state
-              run: printf '%s\n' ${{ github }}
+            - name: Show GitHub context
+              run: printf '%s\n' ${{ toJson(github) }}
 
-#            - name: Send e-mail via Mailgun
-#              uses: vineetchoudhary/mailgun-action@v1.0
-#              with:
-#                api-key: ${{ secrets.MAILGUN_API_KEY }}
-#                domain: ${{ secrets.MAILGUN_DOMAIN }}
-#                to: ${{ secrets.MAILGUN_RECIPIENT }}
-#                from: Mailgun API <${{ secrets.MAILGUN_SENDER }}>
-#                subject: Hello via Mailgun from ${{ github.workflow }}, run ${{ github.run_number }}!
-#                body: |
-#                    <p>This is an automatic e-mail notification from the ${{ github.workflow }} workflow on ${{ github.repository }}, run #${{ github.run_number }}.</p>
-#
-#                    <p>Here is a link to the workflow run: &lt;https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}&gt;</p>
-#
-#                    <p>This is a secret!  Did you know that ${{ secrets.MAILGUN_SECRET }}?</p>
-#
-#            - name: Send e-mail via SMTP
-#              uses: dawidd6/action-send-mail@v2
-#              with:
-#                server_address: ${{ secrets.SMTP_HOST }}
-#                server_port: ${{ secrets.SMTP_PORT }}
-#                username: ${{ secrets.SMTP_USERNAME }}
-#                password: ${{ secrets.SMTP_PASSWORD }}
-#                from: Mailgun SMTP
-#                to: ${{ secrets.MAILGUN_RECIPIENT }}
-#                subject: Hello from ${{ github.workflow }}, run ${{ github.run_number }}!
-#                body: |
-#                    This is an automatic e-mail notification from the ${{ github.workflow }} workflow on ${{ github.repository }}, run #${{ github.run_number }}.
-#
-#                    Here is a link to the workflow run: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}>
-#
-#                    This is a secret!  Did you know that ${{ secrets.MAILGUN_SECRET }}?
+            - name: Determine job URL
+              run: |
+                function api_call {
+                  curl -fsSL \
+                    -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                    -H "Accept: application/vnd.github.v3+json" \
+                    "$@"
+                }
+                api_call "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs" | jq -r --arg job "${{ github.job }}" '.jobs[] | select(.name == $job) | .html_url'
