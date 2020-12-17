@@ -34,7 +34,7 @@ jobs:
             - run: cat *.txt
 
             - name: Show GitHub context
-              run: printf '%s\n' ${{ toJson(github) }}
+              run: printf '%s\n' '${{ toJson(github) }}'
 
             - name: Determine job URL
               run: |
