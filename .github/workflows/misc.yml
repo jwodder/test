@@ -10,13 +10,13 @@ defaults:
 
 jobs:
     misc:
-        runs-on: ubuntu-latest
-        #strategy:
-        #    matrix:
-        #        os:
-        #            #- windows-latest
-        #            - ubuntu-latest
-        #            #- macos-latest
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os:
+                    #- windows-latest
+                    - ubuntu-latest
+                    #- macos-latest
         steps:
             - name: Checkout this repository
               uses: actions/checkout@v2
