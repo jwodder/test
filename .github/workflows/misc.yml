@@ -14,8 +14,8 @@ jobs:
         strategy:
             matrix:
                 os:
-                    #- windows-latest
-                    - ubuntu-latest
+                    - windows-latest
+                    #- ubuntu-latest
                     #- macos-latest
         steps:
             - name: Checkout this repository
@@ -23,12 +23,14 @@ jobs:
               with:
                 fetch-depth: 0
 
-            - run: sudo apt-get update && sudo apt-get install -y tree
+            #- run: sudo apt-get update && sudo apt-get install -y tree
 
-            - run: tree .git/refs
+            #- run: tree .git/refs
 
-            - run: |
-                echo "GITHUB_SHA=$GITHUB_SHA"
-                echo "GITHUB_REF=$GITHUB_REF"
+            #- run: |
+            #    echo "GITHUB_SHA=$GITHUB_SHA"
+            #    echo "GITHUB_REF=$GITHUB_REF"
 
-            - run: cat *.txt
+            #- run: cat *.txt
+
+            - run: python3 -m ensurepip --help
