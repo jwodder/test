@@ -33,4 +33,13 @@ jobs:
 
             #- run: cat *.txt
 
-            - run: python -m ensurepip --help
+            - name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                python-version: '3.6'
+
+            - run: |
+                type python
+                type pip
+                pip install twine
+                type twine
