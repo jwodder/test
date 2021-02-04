@@ -14,9 +14,9 @@ jobs:
         strategy:
             matrix:
                 os:
-                    #- windows-latest
+                    - windows-latest
                     - ubuntu-latest
-                    #- macos-latest
+                    - macos-latest
         steps:
             - name: Checkout this repository
               uses: actions/checkout@v2
@@ -39,7 +39,8 @@ jobs:
                 python-version: '3.6'
 
             - run: |
+                python -c "import sysconfig; print(sysconfig.get_path('scripts'))"
                 type python
                 type pip
-                pip install twine
+                pip install -q twine
                 type twine
