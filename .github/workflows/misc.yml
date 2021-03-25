@@ -23,11 +23,11 @@ jobs:
               with:
                 fetch-depth: 0
 
-            - run: |
-                shopt -s nullglob
-                for f in /etc/*release /etc/*version
-                do printf -- '---- %s -----\n' "$f"
-                   cat "$f"
-                done
+            - name: Set up Python ${{ matrix.python }}
+              uses: actions/setup-python@v2
+              with:
+                python-version: '3.7'
 
-            - run: lsb_release -cs
+            - run: |
+                pip install -q toml
+                pip show toml
