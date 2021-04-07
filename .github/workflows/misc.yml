@@ -23,7 +23,7 @@ jobs:
               with:
                 fetch-depth: 0
 
-            - run:
+            - run: |
                 tag="$(date -u +v%Y.%m.%d.%H.%M.%S)"
                 gh release create "$tag"
               env:
