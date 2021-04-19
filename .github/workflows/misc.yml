@@ -23,11 +23,18 @@ jobs:
               with:
                 fetch-depth: 0
 
+            - name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                python-version: '^3.6'
+
             - run: |
+                pip install pytest
                 export TMPDIR=/tmp
                 brew update
                 #brew install git-annex
-                python3 -c 'import subprocess; subprocess.run(["brew", "install", "git-annex"], check=True)'
+                #python3 -c 'import subprocess; subprocess.run(["brew", "install", "git-annex"], check=True)'
+                python -m pytest test_brew.py
 
             - run: |
                 brew config
