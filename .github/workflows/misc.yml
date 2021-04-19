@@ -15,8 +15,8 @@ jobs:
             matrix:
                 os:
                     #- windows-latest
-                    - ubuntu-latest
-                    #- macos-latest
+                    #- ubuntu-latest
+                    - macos-latest
         steps:
             - name: Checkout this repository
               uses: actions/checkout@v2
@@ -24,7 +24,10 @@ jobs:
                 fetch-depth: 0
 
             - run: |
-                tag="$(date -u +v%Y.%m.%d.%H.%M.%S)"
-                gh release create "$tag"
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                brew update
+                brew install git-annex
+
+            - run: |
+                brew config
+                brew doctor
+              if: failure()
