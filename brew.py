@@ -1,2 +1,2 @@
 import subprocess
-subprocess.run(["brew", "install", "git-annex"], check=True)
+subprocess.run(["brew", "install", "--verbose", "git-annex"], check=True)
