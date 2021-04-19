@@ -24,6 +24,7 @@ jobs:
                 fetch-depth: 0
 
             - run: |
+                export TMPDIR=/tmp
                 brew update
                 brew install git-annex
 
