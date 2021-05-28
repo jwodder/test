@@ -23,18 +23,4 @@ jobs:
               with:
                 fetch-depth: 0
 
-            - name: Set up Python
-              uses: actions/setup-python@v2
-              with:
-                python-version: '^3.6'
-
-            - run: |
-                pip install tox
-                export TMPDIR=/tmp
-                brew update
-                tox
-
-            - run: |
-                brew config
-                brew doctor
-              if: failure()
+            - run: git remote -v
