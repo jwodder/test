@@ -1,1 +1,2 @@
 This is foo text.
+This is squash-merged in.
