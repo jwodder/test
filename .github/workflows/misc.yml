@@ -14,8 +14,8 @@ jobs:
         strategy:
             matrix:
                 os:
-                    - windows-latest
-                    #- ubuntu-latest
+                    #- windows-latest
+                    - ubuntu-latest
                     #- macos-latest
         steps:
             - name: Checkout this repository
@@ -23,6 +23,9 @@ jobs:
               with:
                 fetch-depth: 0
 
-            - run: python -c 'import os.path; print(os.path.basename(".github/workflows/misc.yml"))'
+            - name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                python-version: 3.8
 
-            - run: echo "${{ secrets.GITHUB_TOKEN }}" | base64
+            - run: python -c 'import sys; print(*sys.path, sep="\n")'
