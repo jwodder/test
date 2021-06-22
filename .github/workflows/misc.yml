@@ -23,9 +23,6 @@ jobs:
               with:
                 fetch-depth: 0
 
-            - name: Set up Python
-              uses: actions/setup-python@v2
-              with:
-                python-version: 3.8
-
-            - run: python -c 'import sys; print(*sys.path, sep="\n")'
+            - run: |
+                type -a pandoc || true
+                type -a iconv || true
