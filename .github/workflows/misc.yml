@@ -23,4 +23,6 @@ jobs:
               with:
                 fetch-depth: 0
 
-            - run: pip show pip
+            - run: |
+                pip install nox
+                pip show nox
