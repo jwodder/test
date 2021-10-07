@@ -28,3 +28,5 @@ jobs:
                 python-version: pypy-3.7
 
             - run: env
+            - run: '"$pythonLocation/python" -V'
+            - run: '"$pythonLocation/python3" -V'
