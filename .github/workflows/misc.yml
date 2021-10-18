@@ -23,4 +23,4 @@ jobs:
               with:
                 fetch-depth: 0
 
-            - run: cabal install aws
+            - run: cabal install aws-0.21.1
