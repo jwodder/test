@@ -23,4 +23,6 @@ jobs:
               with:
                 fetch-depth: 0
 
-            - run: cabal install aws-0.21.1
+            - run: echo "$DYLD_LIBRARY_PATH"
+
+            - run: ls -l /usr/lib
