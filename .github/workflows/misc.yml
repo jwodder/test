@@ -15,14 +15,12 @@ jobs:
             matrix:
                 os:
                     #- windows-latest
-                    #- ubuntu-latest
-                    - macos-latest
+                    - ubuntu-latest
+                    #- macos-latest
         steps:
-            - name: Checkout this repository
-              uses: actions/checkout@v2
-              with:
-                fetch-depth: 0
+            #- name: Checkout this repository
+            #  uses: actions/checkout@v2
+              #with:
+              #  fetch-depth: 0
 
-            - run: echo "$DYLD_LIBRARY_PATH"
-
-            - run: ls -l /usr/lib
+            - run: python -c 'import platform; print(platform.machine())'
