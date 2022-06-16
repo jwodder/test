@@ -1,26 +1,32 @@
 name: Foo
 
 on:
-    - push
-    - pull_request
+  - push
+  - pull_request
 
 defaults:
-    run:
-        shell: bash
+  run:
+    shell: bash
 
 jobs:
-    misc:
-        runs-on: ${{ matrix.os }}
-        strategy:
-            matrix:
-                os:
-                    - windows-latest
-                    - ubuntu-latest
-                    - macos-latest
-        steps:
-            #- name: Checkout this repository
-            #  uses: actions/checkout@v2
-              #with:
-              #  fetch-depth: 0
+  misc:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          #- windows-latest
+          #- ubuntu-latest
+          - macos-latest
+    steps:
+      #- name: Checkout this repository
+      #  uses: actions/checkout@v2
+      #  with:
+      #    fetch-depth: 0
 
-            - run: python -c 'import platform; print(platform.machine())'
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - run: |
+          pip install --upgrade pip wheel
+          pip install numcodecs
