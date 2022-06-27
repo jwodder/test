@@ -14,19 +14,13 @@ jobs:
     strategy:
       matrix:
         os:
-          #- windows-latest
+          - windows-latest
           #- ubuntu-latest
-          - macos-latest
+          #- macos-latest
     steps:
       #- name: Checkout this repository
       #  uses: actions/checkout@v2
       #  with:
       #    fetch-depth: 0
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - run: |
-          pip install --upgrade pip wheel
-          pip install numcodecs
+      - run: python3 -c 'import os, pathlib; pathlib.Path(" ").touch(); print(os.listdir())'
