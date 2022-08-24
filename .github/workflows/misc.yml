@@ -14,8 +14,8 @@ jobs:
     strategy:
       matrix:
         os:
-          - windows-latest
-          #- ubuntu-latest
+          #- windows-latest
+          - ubuntu-latest
           #- macos-latest
     steps:
       #- name: Checkout this repository
@@ -23,4 +23,9 @@ jobs:
       #  with:
       #    fetch-depth: 0
 
-      - run: python3 -c 'import os, pathlib; pathlib.Path(" ").touch(); print(os.listdir())'
+      - run: |
+          echo '----'
+          cat <<EOT
+          ${{ toJSON(github.event) }}
+          EOT
+          echo '----'
