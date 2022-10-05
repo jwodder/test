@@ -31,3 +31,5 @@ jobs:
         env:
           GIT_AUTHOR_NAME: Me
           GIT_AUTHOR_EMAIL: me@example.com
+          GIT_COMMITTER_NAME: Me
+          GIT_COMMITTER_EMAIL: me@example.com
