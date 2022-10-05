@@ -14,13 +14,20 @@ jobs:
     strategy:
       matrix:
         os:
-          - windows-latest
-          #- ubuntu-latest
+          #- windows-latest
+          - ubuntu-latest
           #- macos-latest
     steps:
-      #- name: Checkout this repository
-      #  uses: actions/checkout@v2
-      #  with:
-      #    fetch-depth: 0
+      - name: Checkout this repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-      - run: python3 -c 'import os, pathlib; pathlib.Path(" ").touch(); print(os.listdir())'
+      - name: Make a commit
+        run: |
+          touch newfile.txt
+          git add newfile.txt
+          git commit -m newfile
+        env:
+          GIT_AUTHOR_NAME: Me
+          GIT_AUTHOR_EMAIL: me@example.com
