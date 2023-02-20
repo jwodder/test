@@ -1,0 +1,12 @@
+from keyring.backend import get_all_keyring
+import pytest
+
+@pytest.fixture(scope="module", autouse=True)
+def ensure_keyring_backends() -> None:
+    get_all_keyring()
+
+def test_one():
+    assert 1 + 1 == 2
+
+def test_two():
+    assert 2 + 2 == 4
