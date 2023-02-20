@@ -34,4 +34,4 @@ jobs:
       - name: Test pycryptodomex
         #run: python -c "from Cryptodome.Protocol import KDF"
         #run: python -c "from keyrings.alt.file import EncryptedKeyring"
-        run: python -c "from keyring.backend import get_all_keyring; get_all_keyring()"
+        run: python -c "from keyring.backend import get_all_keyring; get_all_keyring(); get_all_keyring()"
