@@ -29,7 +29,8 @@ jobs:
           python-version: '3.11'
 
       - name: Install pycryptodomex
-        run: pip install pycryptodomex
+        run: pip install pycryptodomex keyrings-alt
 
       - name: Test pycryptodomex
-        run: python -c "from Cryptodome.Protocol import KDF"
+        #run: python -c "from Cryptodome.Protocol import KDF"
+        run: python -c "from keyrings.alt.file import EncryptedKeyring"
