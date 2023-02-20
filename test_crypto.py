@@ -1,3 +1,4 @@
+from keyrings.alt.file import EncryptedKeyring
 from keyring.backend import get_all_keyring
 import pytest
 
