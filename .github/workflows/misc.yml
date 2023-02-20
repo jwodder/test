@@ -14,22 +14,22 @@ jobs:
     strategy:
       matrix:
         os:
-          #- windows-latest
-          - ubuntu-latest
+          - windows-latest
+          #- ubuntu-latest
           #- macos-latest
     steps:
       - name: Checkout this repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Make a commit
-        run: |
-          touch newfile.txt
-          git add newfile.txt
-          git commit -m newfile
-        env:
-          GIT_AUTHOR_NAME: Me
-          GIT_AUTHOR_EMAIL: me@example.com
-          GIT_COMMITTER_NAME: Me
-          GIT_COMMITTER_EMAIL: me@example.com
+      - name: Install Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install pycryptodomex
+        run: pip install pycryptodomex
+
+      - name: Test pycryptodomex
+        run: python -c "import pycryptodomex"
