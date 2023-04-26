@@ -24,6 +24,7 @@ jobs:
   env:
     machine:
       image: ubuntu:2204
+    resource_class: large
     steps:
       - run:
           name: env
