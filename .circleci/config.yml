@@ -23,8 +23,7 @@ jobs:
 
   env:
     machine:
-      image: ubuntu:2204
-    resource_class: large
+      image: ubuntu-2204:current
     steps:
       - run:
           name: env
