@@ -8,6 +8,9 @@ workflows:
             parameters:
               python-version: ["3.8", "3.9", "3.10", "3.11"]
       - env
+  artifacts:
+    jobs:
+      - mkartifacts
 
 jobs:
   list-py-pkgs:
@@ -29,3 +32,23 @@ jobs:
       - run:
           name: env
           command: env
+
+  mkartifacts:
+    machine:
+      image: ubuntu-2204:current
+    steps:
+      - checkout
+      - run:
+          name: mkdir
+          command: mkdir /tmp/artifacts
+      - run:
+          name: Download Hamlet
+          command: curl -fsSL -o /tmp/artifacts/hamlet.txt https://gutenberg.org/files/1524/1524-0.txt
+      - run:
+          name: Download Macbeth
+          command: curl -fsSL -o /tmp/artifacts/macbeth.txt https://gutenberg.org/files/1533/1533-0.txt
+      - store_artifacts:
+          path: /tmp/artifacts
+      - store_artifacts:
+          path: foo.txt
+          destination: github/foo
