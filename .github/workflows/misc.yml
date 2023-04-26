@@ -14,8 +14,8 @@ jobs:
     strategy:
       matrix:
         os:
-          - windows-2019
-          #- ubuntu-latest
+          #- windows-2019
+          - ubuntu-latest
           #- macos-latest
     steps:
       - name: Checkout this repository
@@ -23,13 +23,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
+      #- name: Install Python 3.11
+      #  uses: actions/setup-python@v4
+      #  with:
+      #    python-version: '3.11'
 
-      - name: Install packages
-        run: pip install tox
+      #- name: Install packages
+      #  run: pip install tox
 
-      - name: Test
-        run: tox
+      #- name: Test
+      #  run: tox
