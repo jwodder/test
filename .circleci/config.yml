@@ -1,0 +1,30 @@
+version: "2.1"
+
+workflows:
+  inspection:
+    jobs:
+      - list-py-pkgs:
+          matrix:
+            parameters:
+              python-version: ["3.8", "3.9", "3.10", "3.11"]
+      - env
+
+jobs:
+  list-py-pkgs:
+    parameters:
+      python-version:
+        type: string
+    docker:
+      - image: cimg/python:<< parameters.python-version >>
+    steps:
+      - run:
+          name: pip list
+          command: python -m pip list
+
+  env:
+    machine:
+      image: ubuntu:2204
+    steps:
+      - run:
+          name: env
+          command: env
