@@ -24,6 +24,7 @@ jobs:
   env:
     machine:
       image: ubuntu-2204:current
+    parallelism: 3
     steps:
       - run:
           name: env
