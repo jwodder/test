@@ -23,13 +23,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      #- name: Install Python 3.11
-      #  uses: actions/setup-python@v4
-      #  with:
-      #    python-version: '3.11'
+      - name: Install Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
-      #- name: Install packages
-      #  run: pip install tox
-
-      #- name: Test
-      #  run: tox
+      - name: Test
+        run: python -c 'import tempfile; print(tempfile.mkstemp(prefix="dl-env-", suffix=".sh")[1])'
