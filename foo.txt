@@ -1,3 +1,1 @@
 This is foo text.
-This is squash-merged in.
-This is rebase-merged in.
