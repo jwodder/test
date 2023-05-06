@@ -41,3 +41,27 @@ print("git status:")
 for fname in r.stdout.split(b"\0"):
     if fname:
         print(f"\t{show(fname)!r}")
+
+for gitignore in [
+    "f??.txt",
+    "f????.txt",
+    "f*.txt",
+    "snowman-?.txt",
+    "snowman-??.txt",
+    "snowman-???.txt",
+    "snowman-*.txt",
+    "goat-?.txt",
+    "goat-??.txt",
+    "goat-????.txt",
+    "goat-*.txt",
+    "low-?.txt",
+    "low-???.txt",
+    "low-*.txt",
+]:
+    with open(".gitignore", "w") as fp:
+        print(gitignore, file=fp)
+    r = subprocess.run(["git", "status", "--porcelain", "--ignored=matching", "-z"], check=True, stdout=subprocess.PIPE)
+    ignored = [line[3:] for line in r.stdout.split(b"\0") if line.startswith(b"!!") and b"/" not in line]
+    print(f"Gitignored by {show(gitignore)!r}:")
+    for fname in ignored:
+        print(f"\t{show(fname)!r}")
