@@ -57,8 +57,9 @@ for gitignore in [
     "low-?.txt",
     "low-???.txt",
     "low-*.txt",
+    "low-\uFFFD.txt",
 ]:
-    with open(".gitignore", "w") as fp:
+    with open(".gitignore", "w", encoding="utf-8") as fp:
         print(gitignore, file=fp)
     r = subprocess.run(["git", "status", "--porcelain", "--ignored=matching", "-z"], check=True, stdout=subprocess.PIPE)
     ignored = [line[3:] for line in r.stdout.split(b"\0") if line.startswith(b"!!") and b"/" not in line]
