@@ -14,8 +14,8 @@ jobs:
     strategy:
       matrix:
         os:
-          #- windows-2019
-          - ubuntu-latest
+          - windows-latest
+          #- ubuntu-latest
           #- macos-latest
     steps:
       - name: Checkout this repository
@@ -28,5 +28,9 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Test
-        run: python -c 'import tempfile; print(tempfile.mkstemp(prefix="dl-env-", suffix=".sh")[1])'
+      - name: Run Python script
+        run: python touch-bytes.py
+
+      - name: Run Rust program
+        run: cargo run -q -- ..
+        working-directory: rust-test

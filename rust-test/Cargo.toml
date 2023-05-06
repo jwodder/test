@@ -1,0 +1,9 @@
+[package]
+name = "rust-test"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.71"
+bstr = { version = "1.4.0", default-features = false, features = ["std"] }
+os_str_bytes = "6.5.0"
