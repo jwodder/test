@@ -23,14 +23,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Run Python script
-        run: python touch-bytes.py
-
       - name: Run Rust program
-        run: cargo run -q -- ..
+        run: cargo run -q
         working-directory: rust-test
