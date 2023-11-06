@@ -1,0 +1,24 @@
+name: Test
+
+on:
+  - push
+  - pull_request
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          #- windows-latest
+          - ubuntu-latest
+          #- macos-latest
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v4
+
+      - run: env
