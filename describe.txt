@@ -1,4 +1,3 @@
-$Format:%(describe)$
 $Format:%(describe:tags)$
 $Format:%d$
 $Format:%h$
