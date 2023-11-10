@@ -1,0 +1,17 @@
+name: Test on PR Target
+
+on:
+  - pull_request_target
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump github context
+        run: printf '%s\n' "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
