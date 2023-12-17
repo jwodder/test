@@ -28,3 +28,7 @@ jobs:
       - name: Set a locationless error message
         run: |
           echo '::error title=Hello to no one!::Where did this come from?'
+
+      - name: Set a step summary
+        run: |
+          echo "Steps walked." >> "$GITHUB_STEP_SUMMARY"
