@@ -21,4 +21,10 @@ jobs:
       - name: Checkout this repository
         uses: actions/checkout@v4
 
-      - run: env
+      - name: Set an error message
+        run: |
+          echo '::error file=.github/workflows/test.yml,line=24,endLine=26,title=Hello!::This message came from here.'
+
+      - name: Set a locationless error message
+        run: |
+          echo '::error title=Hello to no one!::Where did this come from?'
