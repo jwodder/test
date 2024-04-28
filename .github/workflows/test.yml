@@ -28,14 +28,10 @@ jobs:
           - TEST_MAGIC: 'foo\nbar'
             TEST_APOS: "foo'bar"
             TEST_QUOTE: 'foo"bar'
+    env: ${{ matrix.envs }}
     steps:
       #- name: Checkout this repository
       #  uses: actions/checkout@v4
-
-      - name: Set envvars
-        run: jq -r 'to_entries[] | "\(.key)=\(.value)"' <<<"$ENVS" >> "$GITHUB_ENV"
-        env:
-          ENVS: ${{ toJSON(matrix.envs) }}
 
       - name: Show envvars
         run: env | grep ^TEST_
