@@ -19,19 +19,11 @@ jobs:
           #- windows-latest
           - ubuntu-latest
           #- macos-latest
-        envs:
-          - TEST_FOO: apple
-            TEST_BAR: banana
-            TEST_QUUX: mango
-          - TEST_FOO: raddish
-            TEST_GLARCH: kumquat
-          - TEST_MAGIC: 'foo\nbar'
-            TEST_APOS: "foo'bar"
-            TEST_QUOTE: 'foo"bar'
-    env: ${{ matrix.envs }}
     steps:
       #- name: Checkout this repository
       #  uses: actions/checkout@v4
 
-      - name: Show envvars
-        run: env | grep ^TEST_
+      - name: Show secret
+        run: perl -pl -e 's/(.)/$1 /g' <<<"$TEST_SECRET"
+        env:
+          TEST_SECRET: ${{ secrets.TEST_SECRET }}
