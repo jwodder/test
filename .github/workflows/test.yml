@@ -20,12 +20,14 @@ jobs:
           #- ubuntu-latest
           #- macos-latest
     steps:
-      #- name: Checkout this repository
-      #  uses: actions/checkout@v4
+      - name: Checkout this repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: pypy-3.10
 
-      - run: python -m venv venv
+      - run: pip install tox
+
+      - run: tox -e py
