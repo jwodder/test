@@ -28,8 +28,6 @@ jobs:
         with:
           python-version: pypy-3.10
 
-      #- run: pip install tox
+      - run: pip install tox
 
-      #- run: tox -e py
-
-      - run: python script.py
+      - run: tox -e py
