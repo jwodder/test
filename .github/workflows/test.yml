@@ -10,26 +10,31 @@ defaults:
   run:
     shell: bash
 
+env:
+  TEST_FOO: default
+
 jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os:
-          - windows-latest
-          #- ubuntu-latest
+          #- windows-latest
+          - ubuntu-latest
           #- macos-latest
+        envs:
+          - TEST_FOO: apple
+            TEST_BAR: banana
+            TEST_QUUX: mango
+          - TEST_FOO: raddish
+            TEST_GLARCH: kumquat
+          - TEST_MAGIC: 'foo\nbar'
+            TEST_APOS: "foo'bar"
+            TEST_QUOTE: 'foo"bar'
+    env: ${{ matrix.envs }}
     steps:
-      - name: Checkout this repository
-        uses: actions/checkout@v4
+      #- name: Checkout this repository
+      #  uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: pypy-3.10
-
-      - run: pip install tox
-
-      - run: pip list
-
-      - run: tox -rvv -e py
+      - name: Show envvars
+        run: env | grep ^TEST_
