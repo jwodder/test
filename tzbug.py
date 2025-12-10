@@ -1,9 +1,5 @@
-import os
 import sys
 import time
-
-os.environ["TZ"] = "EST5EDT,M3.2.0,M11.1.0"
-time.tzset()
 
 stamp = 1762623296  # 2025-11-08 12:34:56-05:00
 tzname = time.strftime("%Z", time.localtime(stamp))
