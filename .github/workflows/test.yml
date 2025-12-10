@@ -16,12 +16,19 @@ jobs:
     strategy:
       matrix:
         os:
-          #- windows-latest
+          - windows-latest
           - ubuntu-latest
-          #- macos-latest
+          - macos-latest
+        python-version:
+          - '3.14'
+          - 'pypy-3.11'
     steps:
-      #- name: Checkout this repository
-      #  uses: actions/checkout@v4
+      - name: Checkout this repository
+        uses: actions/checkout@v4
 
-      - name: Show envvars
-        run: env
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - run: python tzbug.py
