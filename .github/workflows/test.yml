@@ -1,14 +1,16 @@
 name: Test
 
 on:
+  pull_request:
   push:
     branches:
       - master
-  pull_request:
 
 defaults:
   run:
     shell: bash
+
+permissions: {}
 
 jobs:
   test:
@@ -21,7 +23,9 @@ jobs:
           #- macos-latest
     steps:
       #- name: Checkout this repository
-      #  uses: actions/checkout@v4
+      #  uses: actions/checkout@v6
+      #  with:
+      #    persist-credentials: false
 
       - name: Show envvars
         run: env
